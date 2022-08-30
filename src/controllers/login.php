@@ -9,7 +9,15 @@ if(count($_POST) > 0){
 
     try {
         $user = $login->checkLogin();
-        echo "Usuário {$user->name} logado! :D";
+
+        $uri = urldecode($_SERVER['REQUEST_URI']);
+
+        if($uri === '/innout/public/' || $uri === '' || $uri === 'innout/public/index.php'){
+            $uri = 'day_records.php';
+        }
+
+        header("Location: /$uri");
+        
     } catch (AppException $e) {
         $exception = $e;
     }

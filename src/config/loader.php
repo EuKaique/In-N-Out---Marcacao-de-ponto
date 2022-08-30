@@ -17,3 +17,19 @@ function loadView($view, $params = array()){
     require_once(VIEW_PATH . "/{$view}.php");
 }
 
+function loadTemplateView($view, $params = array()){
+
+    if(count($params) > 0){
+        foreach ($params as $key => $value) {
+            if(strlen($key) > 0){
+                ${$key} = $value;
+            }
+        }
+    }
+
+    require_once(TEMPLATE_PATH . "/header.php");
+    require_once(TEMPLATE_PATH . "/aside.php");
+    require_once(VIEW_PATH . "/{$view}.php");
+    require_once(TEMPLATE_PATH . "/footer.php");
+}
+
