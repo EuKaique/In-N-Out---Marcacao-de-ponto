@@ -2,6 +2,8 @@
 
 loadModel('Login');
 
+session_start();
+
 $exception = null;
 
 if(count($_POST) > 0){
@@ -9,7 +11,8 @@ if(count($_POST) > 0){
 
     try {
         $user = $login->checkLogin();
-
+        $_SESSION['user'] = $user;
+        
         $uri = urldecode($_SERVER['REQUEST_URI']);
 
         if($uri === '/innout/public/' || $uri === '' || $uri === 'innout/public/index.php'){
